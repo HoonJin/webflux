@@ -19,4 +19,10 @@ public class ServerController {
     public Flux<Dish> serveDishes() {
         return kitchenService.getDishes();
     }
+
+    @GetMapping(value = "/served", produces = TEXT_EVENT_STREAM_VALUE)
+    public Flux<Dish> served() {
+        return kitchenService.getDishes()
+                .map(Dish::deliver);
+    }
 }
