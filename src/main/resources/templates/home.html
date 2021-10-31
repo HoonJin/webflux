@@ -6,5 +6,33 @@
 </head>
 <body>
 <h2>Hello Webflux</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td>
+            <form method="post" th:action="@{'/add/' + ${item.id}}">
+                <input type="submit" value="Add to Cart" />
+            </form>
+        </td>
+        <td>
+            <form th:method="delete"  th:action="@{'/delete/' + ${item.id}}">
+                <input type="submit" value="delete" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
